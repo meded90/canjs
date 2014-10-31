@@ -1,4 +1,4 @@
-@constructor can.Model
+@constructor can.ModelF
 @parent canjs
 @download can/model
 @test can/model/test.html

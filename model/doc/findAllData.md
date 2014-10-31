@@ -18,7 +18,7 @@ that can be understood by [can.Model.models].
 Typically, `findAll` is implemented with a "string" or [can.AjaxSettings ajax settings object] like:
 
     findAll: "GET /tasks"
-    
+
 or
 
     findAll: {url: "/tasks", dataType: "custom"}

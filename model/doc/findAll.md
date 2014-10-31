@@ -20,9 +20,9 @@ Implements `findAll` with a [can.Model.findAllData function]. This function
 is passed to [can.Model.makeFindAll makeFindAll] to create the external
 `findAll` method.
 
-   findAll: function(params){
-     return $.get("/tasks",params)
-   }
+    findAll: function(params){
+      return $.get("/tasks",params)
+    }
 
 @param {can.Model.findAllData} findAllData A function that accepts parameters
 specifying a list of instance data to retrieve and returns a [can.Deferred]
@@ -32,7 +32,7 @@ that resolves to an array of those instances.
 
 Implements `findAll` with a HTTP method and url to retrieve instance data.
 
-   findAll: "GET /tasks"
+    findAll: "GET /tasks"
 
 If `findAll` is implemented with a string, this gets converted to
 a [can.Model.findAllData findAllData function]
@@ -45,13 +45,13 @@ which is passed to [can.Model.makeFindAll makeFindAll] to create the external
 
 @return {JSON} The service should return a JSON object like:
 
-   {
-     "data": [
-       { "id" : 1, "name" : "do the dishes" },
-       { "id" : 2, "name" : "mow the lawn" },
-       { "id" : 3, "name" : "iron my shirts" }
-     ]
-   }
+    {
+      "data": [
+        { "id" : 1, "name" : "do the dishes" },
+        { "id" : 2, "name" : "mow the lawn" },
+        { "id" : 3, "name" : "iron my shirts" }
+      ]
+    }
 
 This object is passed to [can.Model.models] to turn it into instances.
 
@@ -63,7 +63,7 @@ probably [should not be doing that](http://haacked.com/archive/2008/11/20/anatom
 
 Implements `findAll` with a [can.AjaxSettings ajax settings object].
 
-   findAll: {url: "/tasks", dataType: "json"}
+    findAll: {url: "/tasks", dataType: "json"}
 
 If `findAll` is implemented with an object, it gets converted to
 a [can.Model.findAllData findAllData function]
@@ -81,11 +81,11 @@ specifies the options available to pass to [can.ajax].
 instances from the server. After implementing `findAll`, use it to retrieve instances of the model
 like:
 
-   Recipe.findAll({favorite: true}, function(recipes){
-     recipes[0].attr('name') //-> "Ice Water"
-   }, function( xhr ){
-     // called if an error
-   }) //-> Deferred
+    Recipe.findAll({favorite: true}, function(recipes){
+      recipes[0].attr('name') //-> "Ice Water"
+    }, function( xhr ){
+      // called if an error
+    }) //-> Deferred
 
 
 Before you can use `findAll`, you must implement it.
@@ -94,28 +94,28 @@ Before you can use `findAll`, you must implement it.
 
 Implement findAll with a url like:
 
-   Recipe = can.Model.extend({
-     findAll : "/recipes.json"
-   },{});
+    Recipe = can.Model.extend({
+      findAll : "/recipes.json"
+    },{});
 
 The server should return data that looks like:
 
-   [
-     {"id" : 57, "name": "Ice Water"},
-     {"id" : 58, "name": "Toast"}
-   ]
+    [
+      {"id" : 57, "name": "Ice Water"},
+      {"id" : 58, "name": "Toast"}
+    ]
 
 ## Implement with an Object
 
 Implement findAll with an object that specifies the parameters to
 `can.ajax` (jQuery.ajax) like:
 
-   Recipe = can.Model.extend({
-     findAll : {
-       url: "/recipes.xml",
-       dataType: "xml"
-     }
-   },{})
+    Recipe = can.Model.extend({
+      findAll : {
+        url: "/recipes.xml",
+        dataType: "xml"
+      }
+    },{})
 
 ## Implement with a Function
 
@@ -123,11 +123,11 @@ To implement with a function, `findAll` is passed __params__ to filter
 the instances retrieved from the server and it should return a
 deferred that resolves to an array of model data. For example:
 
-   Recipe = can.Model.extend({
-     findAll : function(params){
-       return $.ajax({
-         url: '/recipes.json',
-         type: 'get',
-         dataType: 'json'})
-     }
-   },{})
+    Recipe = can.Model.extend({
+      findAll : function(params){
+        return $.ajax({
+          url: '/recipes.json',
+          type: 'get',
+          dataType: 'json'})
+      }
+    },{})
