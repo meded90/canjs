@@ -48,6 +48,9 @@ steal('can/util',
 				return obj && typeof obj.get === "string";
 			},
 
+			// only show a warning once per key
+			missingKeys = {},
+
 			/*
 			 * Checks whether an object is like a can.Map. This takes into
 			 * fact that can.route is can.Map like.
@@ -1545,10 +1548,11 @@ steal('can/util',
 			can.compute.temporarilyBind(compute);
 
 			// computeData gives us an initial value
-			var initialValue = computeData.initialValue;
+			var initialValue = computeData.initialValue,
+				helperObj = Mustache.getHelper(key, options);
 			  
 			//!steal-remove-start
-			if (initialValue === undefined && !isHelper) {
+			if (initialValue === undefined && !isHelper&& !helperObj && !missingKeys[key]) {
 				can.dev.warn('can/view/mustache/mustache.js: Unable to find key "' + key + '".');
 			}
 			//!steal-remove-end
